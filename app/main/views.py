@@ -36,15 +36,16 @@ def write():
         new_blog = Blog(owner_id =current_user._get_current_object().id, title = title,description=description)
         db.session.add(new_blog)
         db.session.commit()
+        return redirect(url_for('main.blogs'))
 
     '''
     View root page function that returns the index page and its data
     '''
-    blog = Blog.query.filter_by().first()
-    title = 'Home'
+    # blog = Blog.query.filter_by().first()
+    # title = 'Home'
     
 
-    return render_template("writer.html",blog=blog,form=form)
+    return render_template("writer.html",form=form)
 
 
 @main.route('/comment/new/<int:blog_id>', methods = ['GET','POST'])
