@@ -7,18 +7,19 @@ from .forms import UpdateProfile
 from .forms import BlogForm, CommentForm
 from .. import db
 import requests,json
+from app.requests import get_quotes
 
 
 
 @main.route('/', methods = ['GET','POST'])
 def index():
     form=CommentForm()
-    quotes=requests.get("http://quotes.stormconsultancy.co.uk/random.json")
-    data=json.loads(quotes.content)
-    
+    # quotes=requests.get("http://quotes.stormconsultancy.co.uk/random.json")
+    # data=json.loads(quotes.content)
+    quotes=get_quotes()
     title = 'Home'
    
-    return render_template('home.html', title = title,data=data)
+    return render_template('home.html', title = title,quotes=quotes)
     
 
 
@@ -55,20 +56,20 @@ def new_comment(blog_id):
     blog=Blog.query.get(blog_id)
     if form.validate_on_submit():
         description = form.description.data        
-        new_comment = Comment(description = description)
+        new_comment = Comment(description = description, blog_id = blog_id,user_id=current_user.id)
         db.session.add(new_comment)
         db.session.commit()
 
 
-        return redirect(url_for('main.comment', ))    
-        all_comments = Comment.query.filter_by(blog_id = blog_id).all()
+        return redirect(url_for('main.new_comment',blog_id=blog.id ))    
+    all_comments = Comment.query.filter_by(blog_id = blog_id).all()
    
 
 
     #     return redirect(url_for('.new_comment', blog_id= blog_id))
 
     # all_comments = Comment.query.filter_by(blog_id = blog_id).all()
-    # return render_template('comments.html', form = form, comment = all_comments, blog = blog )
+    return render_template('comments.html', form = form, comment = all_comments, blog = blog )
 
 @main.route('/blogs/new',methods = ['GET','POST'])
 def blogs():

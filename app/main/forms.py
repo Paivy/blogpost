@@ -4,6 +4,7 @@ from wtforms.validators import InputRequired
 
 class BlogForm(FlaskForm):
 	title = StringField('Title')
+    
 	description = TextAreaField("What would you like to Blog about ?")
 	submit = SubmitField('Submit')
 

@@ -4,20 +4,31 @@
 
 {% block content %}
 
-<div class="comtainer-fluid blogs">
+<div class="container-fluid blogs">
     <ul>
         {%for blog in blogs%}
-        <div class="card blog" style="width: 18rem">
-            <div class="card-body">
-                <h5 class="card-title">{{blog.title }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted"></h6>
-                <p class="card-text">{{blog.description}}</p>
-                </p>
-                <a href="#" class="card-link"><button type="button" class="btn btn-success">Add Comment</button></a>
-                <a href="#" class="card-link"><button type="button" class="btn btn-danger">
-                        Delete<i class="fa-solid fa-trash-can"></i></button></a>
+        <div class="container">
+            <div id="row" class="row">
+                <div class="col-md-3">
+                    <div class="card blog" style="width: 18rem">
+                        <div class="paivy">
+                            <div class="card-body">
+                                <h5 class="card-title">{{blog.title }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                <p class="card-text">{{blog.description}}</p>
+                                </p>
+                                <a href="{{url_for('main.new_comment',blog_id=blog.id)}}" class="card-link"><button type="button" class="btn btn-success">Add Comment</button></a>
+                                <a href="#" class="card-link"><button type="button" class="btn btn-danger">
+                                        Delete<i class="fa-solid fa-trash-can"></i></button></a>
+                            </div>
+
+                        </div>
+           
+                    </div>
+                </div>
             </div>
         </div>
+        
         {%endfor%}
     </ul>
 </div>

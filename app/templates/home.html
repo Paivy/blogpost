@@ -13,14 +13,25 @@ styles%} {{ super() }}
             <div class="col-md">
                 <img src="" class="img-fluid" alt=""></div>
             </div>
-            <div class="col-md p-5">
-                <h2 class="text">Hello ,  <br>
-                Welcome to <span class="text-primary">BLOGPOST</span></h2>
-                <p class="lead" shorttext>Don't miss out on the most intriguing top most Blogs quotes of the season
-                </p>
-                <button type="button" class="btn btn-outline-success" align="center"><a href="{{url_for('main.write')}}">Want to write a blog</a></button>   
-                <button type="button" class="btn btn-outline-success" align="center"><a href="{{url_for('main.blogs')}}">Want to view blog</a></button>
+            <div id="cont">
+                <div class="col-md p-5">
+                    <h2 class="text"><br>
+                    Welcome to <span class="text-primary">BLOGPOST</span></h2>
+                    
+                    
+                    <p class="lead" shorttext>Don't miss out on the most intriguing top most Blogs quotes of the season
+                    </p>
+                    <div class="design3">
+                        <img src="../static/images/Live.png" alt="">
+
+                    </div>
+                    <button type="button" id="click"class="btn  btn-outline-success" 
+                    align="center"><a href="{{url_for('main.write')}}">Want to write a blog</a></button>   
+                    <button type="button" id="click" class="btn btn-outline-success"
+                    align="center"><a href="{{url_for('main.blogs')}}">Want to view blog</a></button>
+                </div>
             </div>
+            
 
                
                 <div class="row2">
@@ -34,5 +45,30 @@ styles%} {{ super() }}
 
         </div>
     </div>
+        
+
 </section>
+        <div class="design">
+            <div class="design2">
+                <img src="../static/images/Majenge masanse (1) (2).png" alt="">
+             
+            </div>
+           
+
+        </div>
+             <div class="kitu">
+                 
+                <div class="kitu2">
+                    <img src="../static/images/kitu.png" alt="">
+                   
+                
+                </div>
+                <div class="api">
+                        <div class="col-md-5 quote">
+                            <h4>Quotes</h4>
+                            <h4 style="color: rgb(3, 3, 3)">{{quotes.author}}</h4>
+                            <p class="card-text">{{quotes.quotes}}</p>
+                        </div>
+                </div>
+        </div>
 {% endblock%}

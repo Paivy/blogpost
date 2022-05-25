@@ -6,10 +6,10 @@ class Config:
     
     
 class ProdConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL",)
-    if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
-        SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://",1)
-    # pass
+    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL",)
+    # if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+    #     SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://",1)
+    pass
     
 class TestConfig(Config):
     
@@ -17,11 +17,13 @@ class TestConfig(Config):
 
 class DevConfig(Config):
  
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://eshi:1234@localhost/blogs'
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://eshi:1234@localhost/blogs'
+    QUOTE_API_BASE_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
+    
     DEBUG = True
 
 config_options = {
 'development':DevConfig,
 'production':ProdConfig,
-'test':TestConfig
+# 'test':TestConfig
 }
